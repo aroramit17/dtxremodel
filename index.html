@@ -240,7 +240,7 @@
             Call <a href="tel:+12145341155">(214) 534-1155</a> or send the project details below. DTX Remodel is available Monday-Friday, 9:00am-5:00pm and Saturday, 8:30am-6:30pm.
           </p>
         </div>
-        <form class="lead-form" action="mailto:info@dtxremodel.com" method="post" enctype="text/plain">
+        <form class="lead-form" data-lead-form>
           <label>
             Name
             <input name="name" autocomplete="name" required>
@@ -270,6 +270,7 @@
             <textarea name="project_details" rows="5" placeholder="Neighborhood, timeline, scope, and any insurance claim details"></textarea>
           </label>
           <button class="button primary full" type="submit">Request My Estimate</button>
+          <p class="form-status full" data-form-status aria-live="polite"></p>
         </form>
       </section>
     </main>
