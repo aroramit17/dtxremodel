@@ -17,6 +17,7 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="assets/hero-bathroom.jpeg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -59,7 +60,7 @@
           </div>
         </div>
         <div class="hero-media" aria-label="Modern bathroom remodel by DTX Remodel">
-          <img src="assets/hero-bathroom.jpeg" alt="Stone bathroom remodel with freestanding tub and large window">
+          <img src="assets/hero-bathroom.jpeg" alt="Stone bathroom remodel with freestanding tub and large window" fetchpriority="high" decoding="async">
           <div class="hero-card">
             <span>Locally owned</span>
             <strong>Free estimates across the DFW luxury corridor</strong>
@@ -84,7 +85,7 @@
         </div>
         <div class="service-layout">
           <article class="featured-service">
-            <img src="assets/service-detail.jpeg" alt="Detailed bathroom tile and finish work">
+            <img src="assets/service-detail.jpeg" alt="Detailed bathroom tile and finish work" loading="lazy" decoding="async">
             <div>
               <p class="eyebrow">Strategic value</p>
               <h3>Water Damage Insurance Claim Support</h3>
@@ -126,7 +127,7 @@
         <div class="comparison" data-comparison>
           <img class="comparison-image" src="assets/before-space.jpeg" alt="Before remodel interior space">
           <div class="comparison-after" data-after>
-            <img src="assets/after-space.jpeg" alt="After remodel interior space">
+            <img src="assets/after-space.jpeg" alt="After remodel interior space" loading="lazy" decoding="async">
           </div>
           <input class="comparison-slider" data-slider type="range" min="0" max="100" value="52" aria-label="Compare before and after remodel">
           <span class="label before">Before</span>
@@ -176,7 +177,7 @@
       </section>
 
       <section class="image-band">
-        <img src="assets/kitchen-detail.jpeg" alt="Kitchen backsplash and finish detail">
+        <img src="assets/kitchen-detail.jpeg" alt="Kitchen backsplash and finish detail" loading="lazy" decoding="async">
         <div>
           <p class="eyebrow">Designed around Dallas living</p>
           <h2>Elegant finishes, practical sequencing, and durable workmanship for everyday luxury.</h2>

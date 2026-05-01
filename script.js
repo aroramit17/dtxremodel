@@ -5,6 +5,21 @@ const comparisonAfter = document.querySelector("[data-after]");
 const comparisonSlider = document.querySelector("[data-slider]");
 const leadForm = document.querySelector("[data-lead-form]");
 const formStatus = document.querySelector("[data-form-status]");
+const header = document.querySelector("[data-header]");
+const estimateSection = document.querySelector("#estimate");
+const floatingCta = document.querySelector(".floating-cta");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+document.body.classList.add("motion-ready");
+
+if (header) {
+  const setHeaderState = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+}
 
 if (menuButton && menu) {
   menuButton.addEventListener("click", () => {
@@ -30,6 +45,65 @@ if (comparison && comparisonAfter && comparisonSlider) {
 
   setSplit(comparisonSlider.value);
   comparisonSlider.addEventListener("input", (event) => setSplit(event.target.value));
+}
+
+if (estimateSection && floatingCta && "IntersectionObserver" in window) {
+  const ctaObserver = new IntersectionObserver(
+    ([entry]) => {
+      floatingCta.classList.toggle("is-hidden", entry.isIntersecting);
+    },
+    { threshold: 0.18 }
+  );
+
+  ctaObserver.observe(estimateSection);
+}
+
+const revealSelectors = [
+  ".intro-section > *",
+  ".section-heading",
+  ".featured-service",
+  ".service-groups article",
+  ".comparison",
+  ".project-notes article",
+  ".approach-copy",
+  ".steps article",
+  ".image-band > *",
+  ".testimonial-grid figure",
+  ".areas > div",
+  ".area-list li",
+  ".estimate-copy",
+  ".lead-form",
+];
+
+const revealItems = [...document.querySelectorAll(revealSelectors.join(","))];
+
+revealItems.forEach((item, index) => {
+  item.classList.add("reveal-item");
+  item.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 80}ms`);
+
+  if (item.matches(".featured-service, .comparison, .image-band img")) {
+    item.classList.add("reveal-image");
+  }
+});
+
+if (reduceMotion) {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+} else if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.16 }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
 if (leadForm) {
